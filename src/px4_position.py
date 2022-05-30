@@ -2,7 +2,6 @@
 # coding=UTF-8
 
 import threading
-import rospy
 from utilis import *
 from geometry_msgs.msg import PoseStamped
 from nlink_parser.msg import LinktrackNodeframe2
