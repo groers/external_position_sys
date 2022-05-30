@@ -21,10 +21,6 @@ catkin_make
 roscore
 catkin_make run_tests #执行单元测试
 
-rosed px4_uwb swarm0.launch
-
-修改此gcs_url所在行为
-<arg name="gcs_url" value="udp-b://@" />
 
 在当前用户的配置文件 `~/.bashrc`下加入命令`export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib`
 ```
