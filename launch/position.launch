@@ -4,7 +4,7 @@
         <include file="$(find mavros)/launch/node.launch">
                 <arg name="pluginlists_yaml" value="$(find mavros)/launch/px4_pluginlists.yaml" />
                 <arg name="config_yaml" value="$(find mavros)/launch/px4_config.yaml" />
-                <arg name="fcu_url" value="/dev/ttyUSB1:921600" />
+                <arg name="fcu_url" value="/dev/ttyAMA1:921600" />
                 <arg name="gcs_url" value="udp-b://@" />
                 <arg name="tgt_system" value="1" />
                 <arg name="tgt_component" value="1" />
@@ -13,18 +13,17 @@
                 <arg name="respawn_mavros" default="false" />
         </include>
 
+        <node pkg="nlink_parser" type="tofsense" name="tofsense0" output="screen">
+                <param name="port_name" type="str" value="/dev/ttyAMA0" />
+                <param name="baud_rate" type="int" value="921600" />
+                <param name="inquire_mode" type="bool" value="false" />
+        </node>
 
         <node pkg="nlink_parser" type="linktrack" name="linktrack0" output="screen">
                 <param name="port_name" value="/dev/ttyUSB0" />
                 <param name="baud_rate" value="921600" />
         </node>
 
-        <node pkg="nlink_parser" type="tofsense" name="tofsense0" output="screen">
-                <param name="port_name" type="str" value="/dev/ttyUSB2" />
-                <param name="baud_rate" type="int" value="921600" />
-                <param name="inquire_mode" type="bool" value="false" />
-        </node>
-        
         <node pkg="external_position_sys" type="px4_position.py" name="position_node" output="screen"/>
 </launch>
 
